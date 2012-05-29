@@ -3,6 +3,7 @@ DIR="histories/"
 STOREDIR="records/"
 DATE=$(date +'%b %d, %Y')
 OUTPUTFILE=$DIR$DATE
+cd "$( cd "$( dirname "$0" )" && pwd )"
 cp ~/.opera-next/global_history.dat .
 awk -f getTodayHistory.awk -- global_history.dat > "$OUTPUTFILE"
 rm global_history.dat
