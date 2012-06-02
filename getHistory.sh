@@ -1,11 +1,16 @@
-#!/bin/sh
+#!/bin/bash
+#
+#  Stores how much web pages I open each day in Opera. Why not.
+#
+#  Author: Thomas Lee
+#  Date:   May 30, 2012
+#
 DIR="histories/"
 STOREDIR="records/"
 DATE=$(date +'%b %d, %Y')
 OUTPUTFILE=$DIR$DATE
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 unset POSIXLY_CORRECT
-#. ~/.bashrc
 . /etc/profile
 . ~/.profile
 cd "$( cd "$( dirname "$0" )" && pwd )"
@@ -23,4 +28,4 @@ NUMLINES=$(cat "$OUTPUTFILE" | wc -l | tr -d '\n')
 echo -n $NUMLINES
 echo " web pages in the Opera browser."
 find records/ -name "$DATE*" -print0 | xargs -0 rm
-echo > $STOREDIR$DATE" - "$NUMLINES
+echo > "$STOREDIR$DATE"\ -\ "$NUMLINES"
