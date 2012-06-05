@@ -17,7 +17,8 @@ unset POSIXLY_CORRECT
 # Change to script directory
 cd "$( cd "$( dirname "$0" )" && pwd )"
 
-# Extract today's history and store it
+# Extract today's history and store it, updating today's entries if they exist
+find histories/ -name "$DATE*" -print0 | xargs -0 rm
 tac ~/.opera-next/global_history.dat | /usr/bin/gawk -f getTodayHistory.awk > "$OUTPUTFILE"
 /bin/sed -i -f removeExtraHistory.sed "$OUTPUTFILE"
 NUMLINES=$(cat "$OUTPUTFILE" | wc -l | tr -d '\n')
